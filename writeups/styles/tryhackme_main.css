@@ -1,0 +1,297 @@
+.thm-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.thm-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.thm-logo {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.thm-header h1 {
+    margin: 0 0 1rem 0;
+    font-size: 2.5rem;
+}
+
+.thm-header p {
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.filter-section {
+    margin: 0 auto 2rem auto;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: fit-content;
+    display: block;
+    text-align: center;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+
+.filter-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.filter-groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+    text-transform: uppercase;
+    min-width: 80px;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+}
+
+.filter-btn.active {
+    background: var(--highlight-color, #00ff88);
+    border-color: var(--highlight-color, #00ff88);
+    color: #000;
+}
+
+.stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgba(0, 255, 136, 0.1);
+    border-left: 3px solid var(--highlight-color, #00ff88);
+    border-radius: 4px;
+}
+
+.stats-text {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.machines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.machine-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.machine-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--highlight-color, #00ff88);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+}
+
+.machine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.machine-title {
+    flex: 1;
+}
+
+.machine-title h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.machine-icon {
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+.machine-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag {
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Difficulty Tags */
+.tag-easy {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid #22c55e;
+}
+
+.tag-medium {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+    border: 1px solid #fbbf24;
+}
+
+.tag-hard {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+/* Team Tags */
+.tag-red {
+    background: rgba(220, 38, 38, 0.2);
+    color: #dc2626;
+    border: 1px solid #dc2626;
+}
+
+.tag-blue {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+}
+
+.tag-purple {
+    background: rgba(168, 85, 247, 0.2);
+    color: #a855f7;
+    border: 1px solid #a855f7;
+}
+
+/* Type Tags */
+.tag-walkthrough {
+    background: rgba(0, 255, 136, 0.2);
+    color: var(--highlight-color, #00ff88);
+    border: 1px solid var(--highlight-color, #00ff88);
+}
+
+.tag-challenge {
+    background: rgba(251, 146, 60, 0.2);
+    color: #fb923c;
+    border: 1px solid #fb923c;
+}
+
+.machine-description {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.machine-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.machine-date {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.read-btn {
+    padding: 0.5rem 1.25rem;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid var(--highlight-color, #00ff88);
+    border-radius: 6px;
+    color: var(--highlight-color, #00ff88);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.read-btn:hover {
+    background: var(--highlight-color, #00ff88);
+    color: #000;
+}
+
+.no-results {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.no-results-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .thm-header h1 {
+        font-size: 2rem;
+    }
+    
+    .machines-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-groups {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .filter-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

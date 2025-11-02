@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Portswigger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/categories_styles.css">
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/search.css">
+
+</head>
+<body data-page="portswigger">
+    
+    <div class="container">
+        <div id="vmenu-placeholder"></div>
+        <div class="main-content">
+            <div id="hmenu-placeholder"></div>
+            <section class="section">
+                <div class="section-header">
+                    <span class="section-icon">✒️</span>
+                    <h2 class="section-title">Portswigger Writeups</h2>
+                </div>
+                <p class="section-description">📝 Practical PortSwigger writeups — Description + PoC + Fix.</p>
+
+                <div class="section-header">
+                    <span class="section-icon">📂</span>
+                    <h2 class="section-title">Portswigger Categories</h2>
+                </div>
+                <p class="section-description">🚩 Pick a vuln type to view related writeups and PoCs.</p>
+
+                <div class="projects-grid">
+                    <a class="project-link" href="/writeups/ps/xss/main.html" aria-label="Cross-site scripting">
+                        <div class="project-block">
+                            <h3 class="project-name">Cross-site scripting</h3>
+                            <div class="project-tech">Burp Suite • Browser DevTools • JavaScript • Payloads</div>
+                            <p class="project-desc">Find and exploit XSS vectors to demonstrate script injection and session theft. 🧪💥</p>
+                        </div>
+                    </a>
+                
+                    <a class="project-link" href="/writeups/ps/ssrf/main.html" aria-label="Server-side request forgery">
+                        <div class="project-block">
+                            <h3 class="project-name">Server-side request forgery</h3>
+                            <div class="project-tech">Burp Suite • curl • Proxy chaining</div>
+                            <p class="project-desc">Trigger server-side requests to internal services and exfiltrate data via DNS/HTTP callbacks. 🔗🕵️‍♂️</p>
+                        </div>
+                    </a>
+                
+                    <a class="project-link" href="/writeups/ps/os-command-injection/main.html" aria-label="OS command injection">
+                        <div class="project-block">
+                            <h3 class="project-name">OS command injection</h3>
+                            <div class="project-tech">Burp Suite • Command encoding</div>
+                            <p class="project-desc">Inject OS commands to execute on the host, escalate access, or create reverse shells. 🛠️🐚</p>
+                        </div>
+                    </a>
+                
+                    <a class="project-link" href="/writeups/ps/ssti/main.html" aria-label="Server-side template injection">
+                        <div class="project-block">
+                            <h3 class="project-name">Server-side template injection</h3>
+                            <div class="project-tech">Burp Suite • Template engines • Payload crafting • Remote code exec</div>
+                            <p class="project-desc">Abuse template engines to run arbitrary code or read sensitive server data. 🧩🔥</p>
+                        </div>
+                    </a>
+                
+                    <a class="project-link" href="/writeups/ps/path-traversal/main.html" aria-label="Path traversal">
+                        <div class="project-block">
+                            <h3 class="project-name">Path traversal</h3>
+                            <div class="project-tech">Burp Suite • URL encoding • Local file access</div>
+                            <p class="project-desc">Access restricted files by manipulating paths to retrieve configuration and secrets. 📁🔍</p>
+                        </div>
+                    </a>
+                
+                    <a class="project-link" href="/writeups/ps/access-control/main.html" aria-label="Access control vulnerabilities">
+                        <div class="project-block">
+                            <h3 class="project-name">Access control vulnerabilities</h3>
+                            <div class="project-tech">Burp Suite • Role testing • IDOR checks • Authorization logic</div>
+                            <p class="project-desc">Test authorization flows to find missing checks and escalate privileges or view other users' data. 🚩🔐</p>
+                        </div>
+                    </a>
+                
+                    <a class="project-link" href="/writeups/ps/authentication/main.html" aria-label="Authentication">
+                        <div class="project-block">
+                            <h3 class="project-name">Authentication</h3>
+                            <div class="project-tech">Burp Suite • Credential testing • Sessions</div>
+                            <p class="project-desc">Analyze auth flows to exploit weak session handling, brute-force, or bypass multi-factor controls. 🔑🛡️</p>
+                        </div>
+                    </a>
+                </div>
+                            
+            
+            </section>
+                
+
+        </div>
+
+        <script>
+            fetch("/components/hor-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById("hmenu-placeholder").innerHTML = data;
+                });
+        </script>
+        <script>
+            fetch("/components/ver-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("vmenu-placeholder").innerHTML = data;
+                    
+                    // load berfore active
+                    const page = document.body.dataset.page;
+                    const links = document.querySelectorAll('.nav-link');
+                    
+                    links.forEach(link => link.classList.remove('active'));
+                    
+                    links.forEach(link => {
+                        if (link.dataset.page === page) {
+                            link.classList.add('active');
+                            console.log(`✅ Active set for: ${page}`);
+                        }
+                    });
+                });
+        </script>
+
+        
+    </div>
+</body>
+</html>

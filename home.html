@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/categories_styles.css">
+    <link rel="stylesheet" href="/styles/home.css">
+
+</head>
+<body data-page="home">
+    
+    <div class="container">
+        <div id="vmenu-placeholder"></div>
+        <div class="main-content">
+            <div id="hmenu-placeholder"></div>
+            <section class="section">
+                <div class="section-header">
+                    <span class="section-icon">🏠</span>
+                    <h2 class="section-title">Home</h2>
+                </div>
+                <p class="section-description">Here I Documente my work in Security and Tool Development ⚡. </p>
+
+            </section>
+            <!-- Writeups Section -->
+            <section class="section">
+                <div class="section-header">
+                    <span class="section-icon">✍️</span>
+                    <h2 class="section-title">Writeups</h2>
+                </div>
+                <p class="section-description">Step-by-step breakdowns of labs from PortSwigger, TryHackMe, OverTheWire and Super Hacker series 🧩</p>
+                <p class="section-description">Check out latest Writeups 📝👇:</p>
+                <div class="content-list">
+                    <div class="content-item">
+                        <div class="item-title">
+                            SQL Injection UNION Attack
+                            <span class="item-badge">PortSwigger</span>
+                        </div>
+                        <p class="item-description">Exploiting the SQL Injection vulnerability using UNION to extract sensitive data from the database</p>
+                        <div class="item-meta">📅 October 15, 2025 • ⏱️ 8 min read</div>
+                    </div>
+                    
+                    <div class="content-item">
+                        <div class="item-title">
+                            Blue Room - Windows Exploitation
+                            <span class="item-badge">TryHackMe</span>
+                        </div>
+                        <p class="item-description">Hacking a Windows system using EternalBlue and escalating privileges for full access</p>
+                        <div class="item-meta">📅 October 10, 2025 • ⏱️ 12 min read</div>
+                    </div>
+                    
+                    <div class="content-item">
+                        <div class="item-title">
+                            XSS Reflected Attack Chain
+                            <span class="item-badge">PortSwigger</span>
+                        </div>
+                        <p class="item-description">Building an advanced XSS attack chain to steal sessions and bypass protection</p>
+                        <div class="item-meta">📅 October 5, 2025 • ⏱️ 10 min read</div>
+                    </div>
+                </div>
+                
+                <a href="/writeups/portswigger.html" class="view-more-btn">View all Writeups</a>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="section">
+                <div class="section-header">
+                    <span class="section-icon">🛠️</span>
+                    <h2 class="section-title">Projects</h2>
+                </div>
+                <p class="section-description">My projects and security tools 🧠: </p>
+                
+                <div class="projects-grid">
+                    <div class="project-block">
+                        <h3 class="project-name">SubEnum Tool</h3>
+                        <div class="project-tech">Python • DNS • Threading</div>
+                        <p class="project-desc">A tool for discovering subdomains using multiple technologies and high-speed DNS scanning.</p>
+                    </div>
+                    
+                    <div class="project-block">
+                        <h3 class="project-name">XSS Scanner</h3>
+                        <div class="project-tech">Python • BeautifulSoup • Selenium</div>
+                        <p class="project-desc">Automatic XSS vulnerability scanner with support for advanced payloads and protection detection.</p>
+                    </div>
+                    
+                    <div class="project-block">
+                        <h3 class="project-name">CTF Writeups Blog</h3>
+                        <div class="project-tech">HTML • CSS • JavaScript</div>
+                        <p class="project-desc">A personal platform for showcasing cybersecurity challenge analyses.</p>
+                    </div>
+                </div>
+                
+                <a href="/projects/tools.html" class="view-more-btn">View all Projects</a>
+            </section>
+
+            <!-- Milestones Section -->
+            <section class="section">
+                <div class="section-header">
+                    <span class="section-icon">🎯</span>
+                    <h2 class="section-title">Milestones</h2>
+                </div>
+                <p class="section-description">My cybersecurity Journey 🚀</p>
+                
+                <div class="milestones-timeline">
+                    <div class="milestone-item">
+                        <div class="milestone-date">October 2025</div>
+                        <h3 class="milestone-title">I completed 50 challenges from PortSwigger Web Security Academy</h3>
+                        <p class="milestone-desc">I learned advanced techniques in SQL Injection, XSS, CSRF, and authentication bypass.</p>
+                    </div>
+                    
+                    <div class="milestone-item">
+                        <div class="milestone-date">October 2025</div>
+                        <h3 class="milestone-title">Top 7% at TryHackMe Platform</h3>
+                        <p class="milestone-desc">I was able to reach 7% on the platform within 10 days.</p>
+                    </div>
+                    
+                </div>
+                
+                <a href="/milestones.html" class="view-more-btn">My Milestones</a>
+            </section>
+
+        </div>
+
+        <script>
+            fetch("/components/hor-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById("hmenu-placeholder").innerHTML = data;
+                });
+        </script>
+        <script>
+            fetch("/components/ver-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("vmenu-placeholder").innerHTML = data;
+                    
+                    // load berfore active
+                    const page = document.body.dataset.page;
+                    const links = document.querySelectorAll('.nav-link');
+                    
+                    links.forEach(link => link.classList.remove('active'));
+                    
+                    links.forEach(link => {
+                        if (link.dataset.page === page) {
+                            link.classList.add('active');
+                            console.log(`✅ Active set for: ${page}`);
+                        }
+                    });
+                });
+        </script>
+
+        
+    </div>
+</body>
+</html>

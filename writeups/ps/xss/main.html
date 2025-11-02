@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Portswigger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/categories_styles.css">
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/writeups/styles/writeups_page.css">
+
+
+</head>
+<body data-page="portswigger">
+    
+    <div class="container">
+        <div id="vmenu-placeholder"></div>
+        <div class="main-content">
+            <div id="hmenu-placeholder"></div>
+            <section class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Cross-site Scripting</h2>
+                </div>
+                <p class="section-description">Find and exploit XSS vectors to demonstrate script injection and session theft. 🧪💥</p>
+
+                <div class="section-header">
+                    <h2 class="section-title">Writeups</h2>
+                </div>
+
+                <section class="recent-section">                   
+                    <div class="writeups-list">
+                        <!-- Writeup 1 -->
+                        <div class="writeup-item" onclick="location.href='/writeups/ps/xss/reflected-html-context-nothing-encoded.html'">
+                            <div class="writeup-header">
+                                <h3 class="writeup-title">Reflected XSS into HTML context with nothing encoded</h3>
+                                <span class="writeup-badge">PortSwigger</span>
+                            </div>
+                            <p class="writeup-description">
+                                This lab contains a simple reflected cross-site scripting vulnerability in the search functionality.
+                            </p>
+                            <div class="writeup-meta">
+                                <span class="meta-item">📅 October 30, 2025</span>
+                                <span class="meta-item">⏱️ 5 min read</span>
+                                <span class="difficulty easy">Easy</span>
+                                <span class="meta-item">🏷️ XSS, Reflected</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+                
+
+        </div>
+
+        <script>
+            fetch("/components/hor-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById("hmenu-placeholder").innerHTML = data;
+                });
+        </script>
+        <script>
+            fetch("/components/ver-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("vmenu-placeholder").innerHTML = data;
+                    
+                    // load berfore active
+                    const page = document.body.dataset.page;
+                    const links = document.querySelectorAll('.nav-link');
+                    
+                    links.forEach(link => link.classList.remove('active'));
+                    
+                    links.forEach(link => {
+                        if (link.dataset.page === page) {
+                            link.classList.add('active');
+                            console.log(`✅ Active set for: ${page}`);
+                        }
+                    });
+                });
+        </script>
+
+        
+    </div>
+</body>
+</html>

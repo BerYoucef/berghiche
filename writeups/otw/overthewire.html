@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OverTheWire Writeups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/writeups/styles/overthewire.css">
+<link rel="stylesheet" href="/styles/categories_styles.css">
+<link rel="stylesheet" href="/styles/home.css">
+
+</head>
+<body data-page="overthewire">
+
+    <div class="container">
+        <div id="vmenu-placeholder"></div>
+        <div class="main-content">
+            <div id="hmenu-placeholder"></div>
+            
+            <div class="otw-container">
+                <div class="otw-header">
+                <div class="otw-logo">🐱</div>
+                <h1>OverTheWire Writeups</h1>
+                <p>
+                Complete solutions and detailed explanations for OverTheWire wargames. 
+                Master various security topics from Linux basics to advanced exploitation techniques.
+                </p>
+                </div>
+                
+                <!-- Stats Banner -->
+                <div class="stats-banner">
+                <div class="stat-item">
+                <div class="stat-number" id="totalChallenges">0</div>
+                <div class="stat-label">Challenges Solved</div>
+                </div>
+                <div class="stat-item">
+                <div class="stat-number" id="totalCategories">0</div>
+                <div class="stat-label">Categories</div>
+                </div>
+                <div class="stat-item">
+                <div class="stat-number" id="completionRate">0%</div>
+                <div class="stat-label">Overall Progress</div>
+                </div>
+                </div>
+                
+                <!-- Categories Grid -->
+                <div class="categories-grid" id="categoriesGrid"></div>
+                
+            </div>
+            <script>
+                // Categories data
+                const categories = [
+                {
+                id: 1,
+                name: "Bandit",
+                subtitle: "Unix/Linux Basics",
+                description: "Learn the basics of Linux command line, file manipulation, and system exploration. Perfect starting point for beginners in cybersecurity.",
+                icon: "🐧",
+                difficulty: "beginner",
+                totalLevels: 34,
+                solvedLevels: 0,
+                color: "green",
+                url: "otw-bandit.html"
+                },
+                {
+                id: 2,
+                name: "Natas",
+                subtitle: "Web Security",
+                description: "Master web application vulnerabilities including XSS, SQL injection, command injection, and various authentication bypasses.",
+                icon: "🌐",
+                difficulty: "intermediate",
+                totalLevels: 34,
+                solvedLevels: 0,
+                color: "blue",
+                url: "otw-natas.html"
+                },
+                {
+                id: 3,
+                name: "Krypton",
+                subtitle: "Cryptography",
+                description: "Explore classical and modern cryptography. Learn to break various encryption schemes from Caesar ciphers to RSA vulnerabilities.",
+                icon: "🔑",
+                difficulty: "intermediate",
+                totalLevels: 7,
+                solvedLevels: 0,
+                color: "purple",
+                url: "otw-krypton.html"
+                },
+                
+                ];
+                
+                // Calculate and display stats
+                function updateStats() {
+                const totalChallenges = categories.reduce((sum, cat) => sum + cat.solvedLevels, 0);
+                const totalPossible = categories.reduce((sum, cat) => sum + cat.totalLevels, 0);
+                const completionRate = Math.round((totalChallenges / totalPossible) * 100);
+                
+                document.getElementById('totalChallenges').textContent = totalChallenges;
+                document.getElementById('totalCategories').textContent = categories.length;
+                document.getElementById('completionRate').textContent = `${completionRate}%`;
+                }
+                
+                // Render categories
+                function renderCategories() {
+                const grid = document.getElementById('categoriesGrid');
+                    
+                grid.innerHTML = categories.map(cat => {
+                const progress = Math.round((cat.solvedLevels / cat.totalLevels) * 100);
+                        
+                return `
+                <div class="category-card" data-color="${cat.color}" onclick="window.location.href='${cat.url}'">
+                <div class="category-header">
+                <span class="category-icon">${cat.icon}</span>
+                <div class="category-title-area">
+                <h3>${cat.name}</h3>
+                <p class="category-subtitle">${cat.subtitle}</p>
+                </div>
+                </div>
+                <p class="category-description">${cat.description}</p>
+                <div class="category-stats">
+                <div class="stat-box">
+                <div class="stat-box-number">${cat.totalLevels}</div>
+                <div class="stat-box-label">Total Levels</div>
+                </div>
+                <div class="stat-box">
+                <div class="stat-box-number">${cat.solvedLevels}</div>
+                <div class="stat-box-label">Solved</div>
+                </div>
+                </div>
+                <div class="category-progress">
+                <div class="progress-bar-container">
+                <div class="progress-bar" style="width: ${progress}%"></div>
+                </div>
+                <div class="progress-text">${progress}% Complete</div>
+                </div>
+                <div class="category-footer">
+                <span class="difficulty-badge difficulty-${cat.difficulty}">${cat.difficulty}</span>
+                <a href="${cat.url}" class="view-btn" onclick="event.stopPropagation()">View Writeups →</a>
+                </div>
+                </div>
+                `;
+                }).join('');
+                }
+                
+                // Initialize
+                updateStats();
+                renderCategories();
+            </script>
+        
+
+           
+
+           
+
+        </div>
+
+        <script>
+            fetch("/components/hor-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById("hmenu-placeholder").innerHTML = data;
+                });
+        </script>
+        <script>
+            fetch("/components/ver-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("vmenu-placeholder").innerHTML = data;
+                    
+                    // load berfore active
+                    const page = document.body.dataset.page;
+                    const links = document.querySelectorAll('.nav-link');
+                    
+                    links.forEach(link => link.classList.remove('active'));
+                    
+                    links.forEach(link => {
+                        if (link.dataset.page === page) {
+                            link.classList.add('active');
+                            console.log(`✅ Active set for: ${page}`);
+                        }
+                    });
+                });
+        </script>
+
+        
+    </div>
+
+</body>
+</html>

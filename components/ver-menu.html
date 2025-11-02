@@ -1,0 +1,146 @@
+<head>
+    <link rel="stylesheet" href="/styles/ver-menu.css">
+</head>
+
+<button class="menu-toggle-btn" onclick="toggleSidebar()" aria-label="Toggle menu">
+    ☰
+</button>
+
+<div class="sidebar-menu" id="sidebarMenu">
+    <div class="sidebar-logo">
+            <div class="banner-section">
+                <div class="banner"></div>
+                <div class="profile-pic-wrapper">
+                    <div class="profile-pic"></div>
+                </div>
+            </div>
+
+            <div class="logo-text">
+                <span class="logo-highlight">Berghiche</span> Youcef
+            </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <div class="nav-section">
+            <div class="nav-section-title">Main</div>
+            <a href="/home.html" class="nav-link" data-page="home">
+                <span class="icon">🏠</span>
+                <span class="label">Home</span>
+            </a>
+            <a href="/updates.html" class="nav-link" data-page="updates">
+                <span class="icon">🔔</span>
+                <span class="label">Updates</span>
+            </a>
+            <a href="/aboutme.html" class="nav-link" data-page="aboutme">
+                <span class="icon">👤</span>
+                <span class="label">About Me</span>
+            </a>
+            <a href="/search.html" class="nav-link" data-page="search">
+                <span class="icon">🔍</span>
+                <span class="label">Search</span>
+            </a>
+
+        </div>
+
+      
+
+
+        <div class="nav-section">
+            <div class="nav-section-title">Writeups</div>
+            <a href="/writeups/ps/portswigger.html" class="nav-link " data-page="portswigger">
+                <span class="icon">🐙</span>
+                <span class="label">Portswigger</span>
+            </a>
+            <a href="/writeups/thm/tryhackme.html" class="nav-link" data-page="tryhackme">
+                <span class="icon">🧩</span>
+                <span class="label">TryHackMe</span>
+            </a>
+            <a href="/writeups/otw/overthewire.html" class="nav-link" data-page="overthewire">
+                <span class="icon">⚡</span>
+                <span class="label">OverTheWire</span>
+            </a>
+            <a href="/writeups/sph/superhacker.html" class="nav-link" data-page="superhacker">
+                <span class="icon">🏆</span>
+                <span class="label">SuperHacker Series</span>
+            </a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Projects</div>
+            <a href="/projects/tools.html" class="nav-link" data-page="tools">
+                <span class="icon">🛠️</span>
+                <span class="label">Tools</span>
+            </a>
+            <a href="/projects/labs.html" class="nav-link" data-page="labs">
+                <span class="icon">🧪</span>
+                <span class="label">Labs</span>
+            </a>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Contact</div>
+            <a href="/contactme.html" class="nav-link" data-page="contactme">
+                <span class="icon">📧</span>
+                <span class="label">Contact Me</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="copyright">
+            © 2025 Berghiche.Blog
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebarMenu');
+        sidebar.classList.toggle('active');
+    }
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(event) {
+        if (window.innerWidth <= 768) {
+            const sidebar = document.getElementById('sidebarMenu');
+            const toggle = document.querySelector('.menu-toggle-btn');
+            
+            if (!sidebar.contains(event.target) && !toggle.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1) page identity من body
+        const page = document.body.dataset.page; // e.g. "portswigger"
+        const links = document.querySelectorAll('.nav-link');
+
+        // 2) شيل كل active أولًا
+        links.forEach(link => link.classList.remove('active'));
+
+        // 3) لو ما فيه page ما نسوي شيء
+        if (!page) {
+            console.log('vmenu: no data-page set on <body>, no active link will be set.');
+            return;
+        }
+
+        // 4) نبحث عن الرابط المطابق بواسطة data-page attribute على الرابط نفسه
+        let matched = false;
+        links.forEach(link => {
+            const linkPage = link.dataset.page; // لازم تضيف data-page لكل رابط
+            if (linkPage && linkPage === page) {
+            link.classList.add('active');
+            matched = true;
+            }
+        });
+
+        // 5) debugging مفيد لو ما في تطابق
+        if (!matched) {
+            console.log(`vmenu: no nav-link matched data-page="${page}".`);
+        } else {
+            console.log(`vmenu: active set for data-page="${page}".`);
+        }
+    });
+
+</script>

@@ -1,0 +1,275 @@
+    .otw-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    
+    .otw-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .otw-logo {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+    }
+    
+    .otw-header h1 {
+        margin: 0 0 1rem 0;
+        font-size: 2.5rem;
+    }
+    
+    .otw-header p {
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+    
+    .stats-banner {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+    }
+    
+    .stat-item {
+        text-align: center;
+        padding: 1rem 2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--highlight-color, #00ff88);
+        margin-bottom: 0.25rem;
+    }
+    
+    .stat-label {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .category-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .category-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--card-color, #00ff88), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .category-card:hover::before {
+        opacity: 1;
+    }
+    
+    .category-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--card-color, #00ff88);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .category-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .category-icon {
+        font-size: 2.5rem;
+    }
+    
+    .category-title-area h3 {
+        margin: 0 0 0.25rem 0;
+        font-size: 1.6rem;
+        color: #fff;
+    }
+    
+    .category-subtitle {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--card-color, #00ff88);
+        font-weight: 600;
+    }
+    
+    .category-description {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    
+    .category-stats {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+    }
+    
+    .stat-box {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .stat-box-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--card-color, #00ff88);
+        margin-bottom: 0.25rem;
+    }
+    
+    .stat-box-label {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+    }
+    
+    .category-progress {
+        margin-bottom: 1rem;
+    }
+    
+    .progress-bar-container {
+        width: 100%;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+    
+    .progress-bar {
+        height: 100%;
+        background: var(--card-color, #00ff88);
+        transition: width 0.3s ease;
+        border-radius: 4px;
+    }
+    
+    .progress-text {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: right;
+    }
+    
+    .category-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .difficulty-badge {
+        padding: 0.35rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    
+    .difficulty-beginner {
+        background: rgba(34, 197, 94, 0.2);
+        color: #22c55e;
+        border: 1px solid #22c55e;
+    }
+    
+    .difficulty-intermediate {
+        background: rgba(251, 191, 36, 0.2);
+        color: #fbbf24;
+        border: 1px solid #fbbf24;
+    }
+    
+    .difficulty-advanced {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+        border: 1px solid #ef4444;
+    }
+    
+    .view-btn {
+        padding: 0.5rem 1.25rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--card-color, #00ff88);
+        border-radius: 6px;
+        color: var(--card-color, #00ff88);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+    
+    .view-btn:hover {
+        background: var(--card-color, #00ff88);
+        color: #000;
+    }
+    
+    /* Color variations for different categories */
+    .category-card[data-color="green"] {
+        --card-color: #00ff88;
+    }
+    
+    .category-card[data-color="blue"] {
+        --card-color: #3b82f6;
+    }
+    
+    .category-card[data-color="purple"] {
+        --card-color: #a855f7;
+    }
+    
+    .category-card[data-color="orange"] {
+        --card-color: #fb923c;
+    }
+    
+    .category-card[data-color="cyan"] {
+        --card-color: #06b6d4;
+    }
+    
+    .category-card[data-color="pink"] {
+        --card-color: #ec4899;
+    }
+    
+    @media (max-width: 768px) {
+        .otw-header h1 {
+            font-size: 2rem;
+        }
+        
+        .categories-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .stats-banner {
+            gap: 1rem;
+        }
+        
+        .stat-item {
+            padding: 0.75rem 1.5rem;
+        }
+    }

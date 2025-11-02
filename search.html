@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/categories_styles.css">
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/search.css">
+
+</head>
+<body data-page="search">
+    
+    <div class="container">
+        <div id="vmenu-placeholder"></div>
+        <div class="main-content">
+            <div id="hmenu-placeholder"></div>
+            <div class="search-container">
+                <h2>🔍 Search</h2>
+                <p style="margin-bottom: 2rem; opacity: 0.8;">
+                Search through blog posts, tutorials, and CTF writeups
+                </p>
+                
+                <div class="search-box">
+                <input 
+                type="text" 
+                class="search-input" 
+                id="searchInput" 
+                placeholder="Search for topics, keywords, or categories..."
+                autocomplete="off"
+                >
+                <span class="search-icon">🔎</span>
+                </div>
+                
+                <div class="search-stats" id="searchStats">
+                <p id="statsText"></p>
+                </div>
+                
+                <div class="results-container" id="resultsContainer"></div>
+                </div>
+                
+                </div>
+                
+                <script>
+                const blogData = [
+                {
+                id: 1,
+                title: "Reflected XSS into HTML context with nothing encoded",
+                category: "Portswigger",
+                description: "This lab contains a simple reflected cross-site scripting vulnerability in the search functionality.",
+                content: "XSS xss cross-site scripting reflected ",
+                url: "/writeups/ps/xss/reflected-html-context-nothing-encoded.html"
+                },
+                
+                ];
+                
+                const searchInput = document.getElementById('searchInput');
+                const resultsContainer = document.getElementById('resultsContainer');
+                const searchStats = document.getElementById('searchStats');
+                const statsText = document.getElementById('statsText');
+                
+                // Function to highlight search terms
+                function highlightText(text, searchTerm) {
+                if (!searchTerm) return text;
+                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                return text.replace(regex, '<span class="result-highlight">$1</span>');
+                }
+                
+                // Function to perform search
+                function performSearch(query) {
+                const searchTerm = query.trim().toLowerCase();
+                    
+                if (!searchTerm) {
+                resultsContainer.innerHTML = '';
+                searchStats.classList.remove('show');
+                return;
+                }
+                
+                // Filter and score results
+                const results = blogData
+                .map(item => {
+                const titleMatch = item.title.toLowerCase().includes(searchTerm);
+                const descMatch = item.description.toLowerCase().includes(searchTerm);
+                const contentMatch = item.content.toLowerCase().includes(searchTerm);
+                const categoryMatch = item.category.toLowerCase().includes(searchTerm);
+                
+                let score = 0;
+                if (titleMatch) score += 10;
+                if (categoryMatch) score += 5;
+                if (descMatch) score += 3;
+                if (contentMatch) score += 1;
+                
+                return { ...item, score, matched: score > 0 };
+                })
+                .filter(item => item.matched)
+                .sort((a, b) => b.score - a.score);
+                
+                // Display results
+                displayResults(results, searchTerm);
+                }
+                
+                // Function to display results
+                function displayResults(results, searchTerm) {
+                if (results.length === 0) {
+                searchStats.classList.remove('show');
+                resultsContainer.innerHTML = `
+                <div class="no-results">
+                <div class="no-results-icon">🔍</div>
+                <h3>No results found</h3>
+                <p>Try different keywords or check your spelling</p>
+                </div>
+                `;
+                return;
+                }
+                
+                // Show stats
+                searchStats.classList.add('show');
+                statsText.textContent = `Found ${results.length} result${results.length !== 1 ? 's' : ''} for "${searchTerm}"`;
+                
+                // Display results
+                resultsContainer.innerHTML = results.map(item => `
+                <div class="result-item">
+                <span class="result-category">${item.category}</span>
+                <h3 class="result-title">
+                <a href="${item.url}">${highlightText(item.title, searchTerm)}</a>
+                </h3>
+                <p class="result-description">${highlightText(item.description, searchTerm)}</p>
+                </div>
+                `).join('');
+                }
+                
+                // Event listener for search input
+                searchInput.addEventListener('input', (e) => {
+                performSearch(e.target.value);
+                });
+                
+                // Focus on search input when page loads
+                window.addEventListener('load', () => {
+                searchInput.focus();
+                });
+                </script>
+        </div>
+
+        <script>
+            fetch("/components/hor-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById("hmenu-placeholder").innerHTML = data;
+                });
+        </script>
+        <script>
+            fetch("/components/ver-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("vmenu-placeholder").innerHTML = data;
+                    
+                    // load berfore active
+                    const page = document.body.dataset.page;
+                    const links = document.querySelectorAll('.nav-link');
+                    
+                    links.forEach(link => link.classList.remove('active'));
+                    
+                    links.forEach(link => {
+                        if (link.dataset.page === page) {
+                            link.classList.add('active');
+                            console.log(`✅ Active set for: ${page}`);
+                        }
+                    });
+                });
+        </script>
+
+        
+    </div>
+</body>
+</html>

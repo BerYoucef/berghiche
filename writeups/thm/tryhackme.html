@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>TryHackMe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/categories_styles.css">
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/writeups/styles/tryhackme_main.css">
+
+</head>
+<body data-page="tryhackme">
+    
+    <div class="container">
+        <div id="vmenu-placeholder"></div>
+        <div class="main-content">
+            <div id="hmenu-placeholder"></div>
+            <div class="thm-container">
+                <div class="thm-header">
+                <div class="thm-logo">🎯</div>
+                <h1>TryHackMe Writeups</h1>
+                <p>
+                Complete walkthroughs and challenges from my TryHackMe journey. 
+                Learn enumeration, exploitation, and privilege escalation techniques.
+                </p>
+                </div>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                <div class="filter-header">
+                <span>🔍</span>
+                <h3>Filter Rooms</h3>
+                </div>
+                <div class="filter-groups">
+                <div class="filter-group">
+                <span class="filter-label">Difficulty:</span>
+                <button class="filter-btn" data-filter="difficulty" data-value="all">All</button>
+                <button class="filter-btn" data-filter="difficulty" data-value="easy">Easy</button>
+                <button class="filter-btn" data-filter="difficulty" data-value="medium">Medium</button>
+                <button class="filter-btn" data-filter="difficulty" data-value="hard">Hard</button>
+                </div>
+                
+                <div class="filter-group">
+                <span class="filter-label">Team:</span>
+                <button class="filter-btn" data-filter="team" data-value="all">All</button>
+                <button class="filter-btn" data-filter="team" data-value="red">Red</button>
+                <button class="filter-btn" data-filter="team" data-value="blue">Blue</button>
+                <button class="filter-btn" data-filter="team" data-value="purple">Purple</button>
+                </div>
+                <div class="filter-group">
+                <span class="filter-label">Type:</span>
+                <button class="filter-btn" data-filter="type" data-value="all">All</button>
+                <button class="filter-btn" data-filter="type" data-value="walkthrough">Walkthrough</button>
+                <button class="filter-btn" data-filter="type" data-value="challenge">Challenge</button>
+                </div>
+                </div>
+                </div>
+                
+                <!-- Stats Bar -->
+                <div class="stats-bar">
+                <p class="stats-text" id="statsText">Showing all 12 rooms</p>
+                </div>
+                
+                <!-- Machines Grid -->
+                <div class="machines-grid" id="machinesGrid"></div>
+                
+                </div>
+                
+                
+                </div>
+                
+                <script>
+                const machines = [
+                {
+                id: 1,
+                title: "Pickle Rick",
+                description: "This Rick and Morty themed challenge requires you to exploit a web server to find 3 ingredients that will help Rick make his potion to transform himself back into a human.",
+                difficulty: "easy",
+                team: "red",
+                type: "walkthrough",
+                date: "Oct 15, 2024",
+                icon: "🥒",
+                url: "writeup1.html"
+                },
+                {
+                id: 2,
+                title: "Blue",
+                description: "Deploy & hack into a Windows machine, leveraging common misconfigurations issues. Learn about EternalBlue exploit and privilege escalation techniques.",
+                difficulty: "easy",
+                team: "blue",
+                type: "walkthrough",
+                date: "Oct 20, 2024",
+                icon: "🪟",
+                url: "writeup2.html"
+                },
+                {
+                id: 3,
+                title: "Kenobi",
+                description: "Walkthrough on exploiting a Linux machine. Enumerate Samba shares, manipulate a vulnerable version of proftpd and escalate your privileges with Path Variable Manipulation.",
+                difficulty: "easy",
+                team: "red",
+                type: "walkthrough",
+                date: "Oct 22, 2024",
+                icon: "⚔️",
+                url: "writeup3.html"
+                },
+                {
+                id: 4,
+                title: "Steel Mountain",
+                description: "Hack into a Mr. Robot themed Windows machine. Use Metasploit for initial access, then utilize PowerUp to enumerate privilege escalation vectors.",
+                difficulty: "easy",
+                team: "red",
+                type: "challenge",
+                date: "Oct 25, 2024",
+                icon: "🏔️",
+                url: "writeup4.html"
+                },
+                {
+                id: 5,
+                title: "Alfred",
+                description: "Exploit Jenkins to gain initial shell, then escalate privileges by exploiting Windows authentication tokens.",
+                difficulty: "medium",
+                team: "red",
+                type: "walkthrough",
+                date: "Oct 28, 2024",
+                icon: "🎩",
+                url: "writeup5.html"
+                },
+                {
+                id: 6,
+                title: "Game Zone",
+                description: "Learn to hack into this machine using SQLMap, crack some passwords, reveal services using a reverse SSH tunnel and escalate your privileges to root.",
+                difficulty: "medium",
+                team: "red",
+                type: "walkthrough",
+                date: "Nov 1, 2024",
+                icon: "🎮",
+                url: "writeup6.html"
+                },
+                {
+                id: 7,
+                title: "Skynet",
+                description: "Are you able to compromise this Terminator themed machine? Use enumeration, exploit a vulnerable CMS, and escalate privileges using a wildcard injection.",
+                difficulty: "medium",
+                team: "red",
+                type: "challenge",
+                date: "Nov 5, 2024",
+                icon: "🤖",
+                url: "writeup7.html"
+                },
+                {
+                id: 8,
+                title: "Blaster",
+                description: "A blast from the past with this retro-themed Windows exploitation challenge. Exploit RDP vulnerabilities and privilege escalation techniques.",
+                difficulty: "medium",
+                team: "blue",
+                type: "walkthrough",
+                date: "Nov 8, 2024",
+                icon: "💥",
+                url: "writeup8.html"
+                },
+                {
+                id: 9,
+                title: "Overpass",
+                description: "What happens when a group of broke Computer Science students try to make a password manager? Obviously a perfect storm of insecure coding.",
+                difficulty: "medium",
+                team: "purple",
+                type: "walkthrough",
+                date: "Nov 12, 2024",
+                icon: "🔑",
+                url: "writeup9.html"
+                },
+                {
+                id: 10,
+                title: "Daily Bugle",
+                description: "Compromise a Joomla CMS account via SQLi, practise cracking hashes and escalate privileges by taking advantage of yum.",
+                difficulty: "hard",
+                team: "red",
+                type: "challenge",
+                date: "Nov 15, 2024",
+                icon: "📰",
+                url: "writeup10.html"
+                },
+                {
+                id: 11,
+                title: "Internal",
+                description: "Penetration testing challenge simulating a real-world scenario. Multiple vulnerabilities need to be chained together for complete compromise.",
+                difficulty: "hard",
+                team: "red",
+                type: "challenge",
+                date: "Nov 18, 2024",
+                icon: "🔒",
+                url: "writeup11.html"
+                },
+                {
+                id: 12,
+                title: "Brainstorm",
+                description: "Reverse engineering and exploit development challenge. Analyze a chat server and develop a buffer overflow exploit to gain system access.",
+                difficulty: "hard",
+                team: "purple",
+                type: "challenge",
+                date: "Nov 22, 2024",
+                icon: "🧠",
+                url: "writeup12.html"
+                }
+                ];
+                
+                let currentFilters = {
+                difficulty: 'all',
+                team: 'all',
+                type: 'all'
+                };
+                
+                // Render machines
+                function renderMachines() {
+                const grid = document.getElementById('machinesGrid');
+                const filteredMachines = machines.filter(machine => {
+                const difficultyMatch = currentFilters.difficulty === 'all' || machine.difficulty === currentFilters.difficulty;
+                const teamMatch = currentFilters.team === 'all' || machine.team === currentFilters.team;
+                const typeMatch = currentFilters.type === 'all' || machine.type === currentFilters.type;
+                return difficultyMatch && teamMatch && typeMatch;
+                });
+                
+                // Update stats
+                const statsText = document.getElementById('statsText');
+                statsText.textContent = `Showing ${filteredMachines.length} of ${machines.length} rooms`;
+                
+                if (filteredMachines.length === 0) {
+                grid.innerHTML = `
+                <div class="no-results" style="grid-column: 1/-1;">
+                <div class="no-results-icon">🔍</div>
+                <h3>No rooms found</h3>
+                <p>Try adjusting your filters</p>
+                </div>
+                `;
+                return;
+                }
+                
+                grid.innerHTML = filteredMachines.map(machine => `
+                <div class="machine-card" onclick="window.location.href='${machine.url}'">
+                <div class="machine-header">
+                <div class="machine-title">
+                <h3>${machine.title}</h3>
+                </div>
+                <div class="machine-icon">${machine.icon}</div>
+                </div>
+                <div class="machine-tags">
+                <span class="tag tag-${machine.difficulty}">${machine.difficulty}</span>
+                <span class="tag tag-${machine.team}">${machine.team} Team</span>
+                <span class="tag tag-${machine.type}">${machine.type}</span>
+                </div>
+                <p class="machine-description">${machine.description}</p>
+                <div class="machine-footer">
+                <span class="machine-date">📅 ${machine.date}</span>
+                <a href="${machine.url}" class="read-btn" onclick="event.stopPropagation()">Read More →</a>
+                </div>
+                </div>
+                `).join('');
+                }
+                
+                // Handle filter clicks
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                const filterType = this.dataset.filter;
+                const filterValue = this.dataset.value;
+                
+                // Update active state
+                document.querySelectorAll(`[data-filter="${filterType}"]`).forEach(b => {
+                b.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Update filters
+                currentFilters[filterType] = filterValue;
+                
+                // Re-render
+                renderMachines();
+                });
+                });
+                
+                // Set initial active filters
+                document.querySelectorAll('[data-value="all"]').forEach(btn => {
+                btn.classList.add('active');
+                });
+                
+                // Initial render
+                renderMachines();
+                </script>
+        
+
+           
+
+           
+
+        </div>
+
+        <script>
+            fetch("/components/hor-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                document.getElementById("hmenu-placeholder").innerHTML = data;
+                });
+        </script>
+        <script>
+            fetch("/components/ver-menu.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("vmenu-placeholder").innerHTML = data;
+                    
+                    // load berfore active
+                    const page = document.body.dataset.page;
+                    const links = document.querySelectorAll('.nav-link');
+                    
+                    links.forEach(link => link.classList.remove('active'));
+                    
+                    links.forEach(link => {
+                        if (link.dataset.page === page) {
+                            link.classList.add('active');
+                            console.log(`✅ Active set for: ${page}`);
+                        }
+                    });
+                });
+        </script>
+
+        
+    </div>
+</body>
+</html>

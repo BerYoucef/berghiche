@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berghiche Blog - Contact Me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+<div class="container">
+<header>
+<h1><span class="highlight">Berghiche</span>.Blog</h1>
+</header>
+<div class="banner-section">
+<div class="banner"></div>
+<div class="profile-pic-wrapper">
+<div class="profile-pic"></div>
+</div>
+</div>
+<div class="bio-section">
+<h2>Get In Touch</h2>
+<p>
+                💬 Have a question about cybersecurity? Want to collaborate on a project?
+                Or just want to say hi? Feel free to reach out through any of the channels below.
+                I'm always open to discussing security research, bug bounty, and CTF challenges!
+</p>
+<div class="contact-methods">
+<div class="contact-item">
+<span class="contact-icon">📧</span>
+<div class="contact-info">
+<h3>Email</h3>
+<a href="mailto:berghicheyoucef@example.com">berghicheyoucef@gmail.com</a>
+</div>
+</div>
+<div class="contact-item">
+<span class="contact-icon">💼</span>
+<div class="contact-info">
+<h3>Professional Network</h3>
+<a href="https://www.linkedin.com/in/youcef-berghiche-09aa012b9/" target="_blank">Connect on LinkedIn</a>
+</div>
+</div>
+<div class="social-links">
+<a href="home.html" class="my-world">
+<span>🏠</span>
+<span>Back to Home</span>
+</a>
+</div>
+</div>
+</body>
+</html>
+
+<style>
+.contact-methods {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.contact-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.contact-info a {
+    color: var(--highlight-color, #00ff88);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.contact-info a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.response-note {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(0, 255, 136, 0.1);
+    border-left: 3px solid var(--highlight-color, #00ff88);
+    border-radius: 4px;
+}
+
+.response-note p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .contact-item {
+        padding: 1rem;
+    }
+    
+    .contact-icon {
+        font-size: 1.5rem;
+    }
+    
+    .contact-info h3 {
+        font-size: 1rem;
+    }
+}
+</style>
